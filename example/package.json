@@ -1,12 +1,12 @@
 {
-	"name": "astal-labs/example",
-	"version": "0.0.1",
-	"scripts": {
-		"app": "ags run ."
-	},
-	"dependencies": {
-		"astal-labs/core": "0.0.1",
-        "typescript": "5.7.3",
-        "typescript-language-server": "^4.3.4"
-	}
+    "name": "@astal-labs/example",
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "app": "ags run . --gtk 4"
+    },
+    "dependencies": {
+        "@astal-labs/core": "workspace:*",
+        "gnim": "*"
+    }
 }

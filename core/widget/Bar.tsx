@@ -1,30 +1,33 @@
-import { App, Astal, Gtk, Gdk } from "astal/gtk3"
-import { Variable } from "astal"
-
-const time = Variable("").poll(1000, "date")
+import app from "ags/gtk4/app"
+import { Astal, Gtk, Gdk } from "ags/gtk4"
+import { createPoll } from "ags/time"
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
+    const time = createPoll("", 1000, "date")
     const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
 
     return <window
-        className="Bar"
+        visible
+        class="Bar"
         gdkmonitor={gdkmonitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | LEFT | RIGHT}
-        application={App}>
-        <centerbox>
+        application={app}>
+        <centerbox cssName="centerbox">
             <button
-                onClicked="echo hello"
-                halign={Gtk.Align.CENTER}
-            >
-                Welcome to AGS!
-            </button>
-            <box />
-            <button
+                $type="start"
                 onClicked={() => print("hello")}
                 halign={Gtk.Align.CENTER}
             >
-                <label label={time()} />
+                <label label="Welcome to AGS!" />
+            </button>
+            <box $type="center" />
+            <button
+                $type="end"
+                onClicked={() => print("hello")}
+                halign={Gtk.Align.CENTER}
+            >
+                <label label={time} />
             </button>
         </centerbox>
     </window>

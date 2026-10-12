@@ -1,42 +1,42 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "astal-labs",
       "devDependencies": {
         "prettier": "3.3.2",
+        "typescript": "5.7.3",
+        "typescript-language-server": "^4.3.4",
       },
     },
     "core": {
-      "name": "astal-labs/core",
+      "name": "@astal-labs/core",
       "version": "0.0.1",
       "dependencies": {
-        "astal": "/nix/store/8cl58ip2nasg6rdyj59cwg2f0qbixs28-astal-gjs/share/astal/gjs",
-        "typescript": "5.7.3",
-        "typescript-language-server": "^4.3.4",
+        "gnim": "*",
       },
     },
     "example": {
-      "name": "astal-labs/example",
+      "name": "@astal-labs/example",
       "version": "0.0.1",
       "dependencies": {
-        "astal-labs/core": "0.0.1",
-        "typescript": "5.7.3",
-        "typescript-language-server": "^4.3.4",
+        "@astal-labs/core": "workspace:*",
+        "gnim": "*",
       },
     },
   },
   "packages": {
-    "astal-labs/core": ["astal-labs/core@workspace:core"],
+    "@astal-labs/core": ["@astal-labs/core@workspace:core"],
 
-    "astal-labs/example": ["astal-labs/example@workspace:example"],
+    "@astal-labs/example": ["@astal-labs/example@workspace:example"],
+
+    "gnim": ["gnim@1.9.1", "", {}, "sha512-WttkzzZg17qrJKGk87HlE1zHKUdYoimSqjmsULt4C6DNq3JfYSPhYNjwUjBMHFpzZMbyUVHgpTTW6IIehme9tQ=="],
 
     "prettier": ["prettier@3.3.2", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA=="],
 
     "typescript": ["typescript@5.7.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw=="],
 
-    "typescript-language-server": ["typescript-language-server@4.3.4", "", { "bin": { "typescript-language-server": "lib/cli.mjs" } }, "sha512-0pQ4ffAarsf10VwFhyyyqNJhuDd4r6f4dSsQN38WdbQ3WVxqi08p/bI//v1VnOV5CSVd4AeOUY/jfJYheHTQPQ=="],
-
-    "astal-labs/core/astal": ["astal@file:../../../../../nix/store/8cl58ip2nasg6rdyj59cwg2f0qbixs28-astal-gjs/share/astal/gjs", {}],
+    "typescript-language-server": ["typescript-language-server@4.4.1", "", { "bin": { "typescript-language-server": "lib/cli.mjs" } }, "sha512-vEvDw+cjY75afMN2rhx0z8sQtFDAUHoBniksBmB6NUZlDt0rEIwQq01VMiqyXFm9uZwcED2475cmDeXxoDHleg=="],
   }
 }

@@ -1,6 +1,6 @@
-// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-$fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
+// https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html
+$fg-color: #{"@window_fg_color"};
+$bg-color: #{"@window_bg_color"};
 
 window.Bar {
     background: transparent;

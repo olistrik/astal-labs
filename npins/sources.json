@@ -1,0 +1,40 @@
+{
+  "pins": {
+    "ags": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "aylur",
+        "repo": "ags"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v3.1.2",
+      "revision": "bbee2f18939f1ec7ff720e717cf305e73635628f",
+      "url": "https://api.github.com/repos/aylur/ags/tarball/refs/tags/v3.1.2",
+      "hash": "sha256-tM3s7CX+tgxlYW0Sk3nzVThg2MHn08foIuMxABupxIs="
+    },
+    "astal": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "aylur",
+        "repo": "astal"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "cbcd9f49dd6b9638dc5623b56cc6e1e0a60b593e",
+      "url": "https://github.com/aylur/astal/archive/cbcd9f49dd6b9638dc5623b56cc6e1e0a60b593e.tar.gz",
+      "hash": "sha256-u8CMQ5ODv9Q+mHgx1QDgSDeMANprWTfZ+owxXNhu8Pc="
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixos-unstable",
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1089111.6510408d147d/nixexprs.tar.xz",
+      "hash": "sha256-V0WmebqwEeAVZMqxfv7Dq7hpKkPPM19W50xQf3D1Kf4="
+    }
+  },
+  "version": 7
+}

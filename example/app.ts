@@ -1,7 +1,6 @@
-import App from "astal-labs/core";
+import { start, Bar } from "@astal-labs/core"
 
-App.start({
-	apps: [
-		["astal-labs/core@widget/Bar", {}],
-	]
-});
+start({
+    instanceName: "astal-labs-example",
+    windows: [Bar],
+})

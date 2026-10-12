@@ -1,31 +1,27 @@
-import { App } from "astal/gtk3";
+import app from "ags/gtk4/app"
+import { Gdk, Gtk } from "ags/gtk4"
 import style from "./style.scss"
 
-type App = [string, {}];
+export { default as Bar } from "./widget/Bar"
 
-type Config = {
-	apps: Array<App>,
+/** A window factory, called once for every monitor. */
+export type WindowFactory = (monitor: Gdk.Monitor) => Gtk.Window
+
+export type Config = {
+    windows: Array<WindowFactory>
+    instanceName?: string
+    /** Extra css, loaded after the core styles. */
+    css?: string
 }
 
-const Core = {
-	start(config: any) {
-		App.start({
-			css: style,
-			instanceName: "astal-lab_core",
-			main() {
-				for (let [pkg, cfg] of config.apps) {
-					pkg = pkg.replace(/^astal-labs\/core/, ".")
-					import(pkg).then(instance => {
-						App.get_monitors().map(instance.default)
-					}).catch(err => {
-						console.log(err)
-					})
-				}
-			},
-
-		});
-	}
+export function start({ windows, instanceName = "astal-labs", css = "" }: Config) {
+    app.start({
+        css: `${style}\n${css}`,
+        instanceName,
+        main() {
+            for (const window of windows) {
+                app.get_monitors().map(window)
+            }
+        },
+    })
 }
-
-export default Core;
-
