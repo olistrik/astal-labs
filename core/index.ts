@@ -1,3 +1,4 @@
+import { createRoot } from "ags"
 import app from "ags/gtk4/app"
 import { Gdk, Gtk } from "ags/gtk4"
 import style from "./style.scss"
@@ -41,7 +42,7 @@ export type Config = {
 }
 
 export function start({
-    windows,
+    windows: factories,
     instanceName = "astal-labs",
     theme = "tokyo-night",
     css = "",
@@ -50,9 +51,32 @@ export function start({
         css: [themeCss(resolveTheme(theme)), style, css].join("\n"),
         instanceName,
         main() {
-            for (const window of windows) {
-                app.get_monitors().map(window)
+            // with every monitor unplugged there are no windows, which must not quit the app
+            app.hold()
+            const display = Gdk.Display.get_default()!
+            const monitors = display.get_monitors()
+            const open = new Map<Gdk.Monitor, { windows: Array<Gtk.Window>; dispose: () => void }>()
+
+            // windows follow the monitors: built for new ones, torn down for unplugged ones
+            const sync = () => {
+                const current = new Set(app.get_monitors())
+
+                for (const [monitor, { windows, dispose }] of open) {
+                    if (current.has(monitor)) continue
+                    open.delete(monitor)
+                    dispose()
+                    windows.forEach((window) => window.destroy())
+                }
+
+                for (const monitor of current) {
+                    if (open.has(monitor)) continue
+                    // its own scope, so the widgets' bindings go away with the monitor
+                    createRoot((dispose) => open.set(monitor, { windows: factories.map((factory) => factory(monitor)), dispose }))
+                }
             }
+
+            monitors.connect("items-changed", sync)
+            sync()
         },
     })
 }
