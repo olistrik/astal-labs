@@ -5,6 +5,7 @@ import { resolveTheme, themeCss, type ThemeSpec } from "./theme"
 
 export { default as Bar } from "./widget/Bar"
 export { default as NiriMinimap } from "./widget/NiriMinimap"
+export { default as Clock } from "./widget/Clock"
 export { default as NiriWorkspaces } from "./widget/NiriWorkspaces"
 export { themes, type Theme, type ThemeName, type ThemeSpec } from "./theme"
 

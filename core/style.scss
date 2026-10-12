@@ -3,7 +3,9 @@ $bg: #{"@astal_bg"};
 $surface: #{"@astal_surface"};
 $fg: #{"@astal_fg"};
 $primary: #{"@astal_primary"};
-$orange: #{"@astal_orange"};
+
+// Height of every component in the bar.
+$thickness: 34px;
 
 window.Bar {
     background-color: transparent;
@@ -58,7 +60,7 @@ window.Bar {
         background-color: $surface;
 
         &.focused {
-            background-color: $orange;
+            background-color: $primary;
         }
     }
 }
@@ -67,7 +69,7 @@ window.Bar {
     button.workspace {
         margin: 2px;
         padding: 0 8px;
-        min-height: 0;
+        min-height: $thickness;
         border: none;
         outline: none;
         border-radius: 8px;
@@ -90,4 +92,13 @@ window.Bar {
             color: $bg;
         }
     }
+}
+
+label.Clock {
+    margin: 2px;
+    padding: 0 10px;
+    min-height: $thickness;
+    border-radius: 8px;
+    background-color: $surface;
+    color: $fg;
 }

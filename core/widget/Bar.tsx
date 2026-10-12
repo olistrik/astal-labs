@@ -1,11 +1,10 @@
 import app from "ags/gtk4/app"
-import { Astal, Gtk, Gdk } from "ags/gtk4"
-import { createPoll } from "ags/time"
+import { Astal, Gdk } from "ags/gtk4"
+import Clock from "./Clock"
 import NiriMinimap from "./NiriMinimap"
 import NiriWorkspaces from "./NiriWorkspaces"
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
-    const time = createPoll("", 1000, "date")
     const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
 
     return <window
@@ -18,13 +17,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
         <centerbox cssName="centerbox">
             <NiriWorkspaces $type="start" monitor={gdkmonitor} />
             <NiriMinimap $type="center" monitor={gdkmonitor} />
-            <button
-                $type="end"
-                onClicked={() => print("hello")}
-                halign={Gtk.Align.CENTER}
-            >
-                <label label={time} />
-            </button>
+            <Clock $type="end" />
         </centerbox>
     </window>
 }
