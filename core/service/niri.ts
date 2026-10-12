@@ -24,6 +24,7 @@ export type Workspace = {
     idx: number
     name: string | null
     output: string | null
+    is_urgent: boolean
     is_active: boolean
     is_focused: boolean
     active_window_id: number | null
