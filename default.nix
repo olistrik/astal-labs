@@ -32,7 +32,7 @@ in
   # For use from other projects:
   #   astal-labs = import sources.astal-labs { };
   #   astal-labs.bundle { src = ./.; name = "my-shell"; entry = "app.tsx"; }
-  # and for a dev shell: astal-labs.ags and astal-labs.core (see ags-config's shell.nix).
-  inherit core bundle ags example;
+  # and for a dev shell: astal-labs.pkgs, astal-labs.ags and astal-labs.core (see ags-config's shell.nix).
+  inherit core bundle ags pkgs example;
   default = example;
 }
