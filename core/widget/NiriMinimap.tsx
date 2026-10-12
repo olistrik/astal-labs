@@ -19,7 +19,8 @@ const FALLBACK_HEIGHT = 24
  * A segmented minimap of the active workspace on `monitor`: one segment per
  * scrolling column, with the same aspect ratio as that column, and tiles
  * stacked inside it. When there are too many columns to fit, all segments get
- * proportionally narrower. Click a column to focus it.
+ * proportionally narrower. Click a column to focus it. Hidden while the workspace
+ * has one window or none.
  */
 export default function NiriMinimap({
     monitor,
@@ -87,9 +88,13 @@ export default function NiriMinimap({
         })
     })
 
+    // a single window is all there is to see: nothing to navigate, so hide the minimap
+    const hasSeveral = columns((all) => all.reduce((count, column) => count + column.tiles.length, 0) > 1)
+
     return (
         <box
             class="NiriMinimap"
+            visible={hasSeveral}
             $={(self) => {
                 // the bar row's height is only known once it has been allocated
                 self.add_tick_callback(() => {
