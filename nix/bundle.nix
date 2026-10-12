@@ -25,8 +25,24 @@ pkgs.stdenv.mkDerivation {
   buildInputs = [
     astal.io
     astal.astal4
+    astal.battery
+    astal.bluetooth
+    astal.network
+    astal.mpris
+    astal.wireplumber
     pkgs.gjs
+    pkgs.glib-networking # TLS, for cover art
   ] ++ extraPackages;
+
+  # brightnessctl and nmcli are called by the brightness service and the network panel
+  preFixup = ''
+    gappsWrapperArgs+=(--prefix PATH : ${
+      pkgs.lib.makeBinPath [
+        pkgs.brightnessctl
+        pkgs.networkmanager
+      ]
+    })
+  '';
 
   installPhase = ''
     runHook preInstall

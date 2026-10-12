@@ -102,3 +102,157 @@ label.Clock {
     background-color: $surface;
     color: $fg;
 }
+
+// Status items (volume, battery, ...), all built on BarItem.
+box.BarItem {
+    margin: 2px;
+    padding: 0 10px;
+    min-height: $thickness;
+    border-radius: 8px;
+    background-color: $surface;
+    color: $fg;
+
+    // the label slides out next to the icon, keep it off the icon until it does
+    revealer label {
+        margin-left: 6px;
+    }
+
+    &:hover {
+        background-color: #{"alpha(@astal_primary, 0.3)"};
+    }
+
+    &.muted,
+    &.disabled,
+    &.off {
+        color: #{"@astal_muted"};
+    }
+
+    &.muted image {
+        color: #{"@astal_red"};
+    }
+
+    &.connected image {
+        color: $primary;
+    }
+
+    &.low image {
+        color: #{"@astal_yellow"};
+    }
+
+    &.critical image {
+        color: #{"@astal_red"};
+    }
+
+    &.charging image {
+        color: #{"@astal_green"};
+    }
+}
+
+// Panels shown in popovers: Network, Bluetooth and Audio.
+.Panel {
+    min-width: 320px;
+    padding: 4px;
+
+    .PanelHeader,
+    .PanelSlider {
+        margin-bottom: 4px;
+    }
+
+    .PanelTitle {
+        margin: 8px 4px 4px;
+        color: #{"@astal_muted"};
+        font-size: 0.85em;
+    }
+
+    button.PanelButton,
+    button.PanelRow {
+        padding: 6px 8px;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        background-image: none;
+        background-color: transparent;
+        color: $fg;
+
+        &:hover {
+            background-color: #{"alpha(@astal_primary, 0.3)"};
+        }
+
+        image {
+            margin-right: 8px;
+        }
+    }
+
+    button.PanelRow.active {
+        color: $primary;
+    }
+
+    image.scanning {
+        animation: astal-spin 1s linear infinite;
+    }
+}
+
+@keyframes astal-spin {
+    to {
+        -gtk-icon-transform: rotate(1turn);
+    }
+}
+
+// A group is one pill; the items in it lose their own pill.
+box.BarGroup {
+    margin: 2px;
+    border-radius: 8px;
+    background-color: $surface;
+
+    >box.BarItem {
+        margin: 0;
+        padding: 0 8px;
+        background-color: transparent;
+
+        &:hover {
+            background-color: #{"alpha(@astal_primary, 0.3)"};
+        }
+    }
+}
+
+// Menus: a transparent window covering the screen, with the menu in a corner.
+window.MenuWindow {
+    background-color: transparent;
+    color: $fg;
+}
+
+box.Menu {
+    margin: 0 8px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #{"@astal_border"};
+    background-color: $bg;
+
+    .Panel + .Panel {
+        margin-top: 12px;
+    }
+
+    .PanelEmpty {
+        color: #{"@astal_muted"};
+    }
+}
+
+.MediaPlayerPanel {
+    padding: 8px;
+    border-radius: 12px;
+    background-color: $surface;
+
+    .cover {
+        margin-right: 12px;
+        border-radius: 8px;
+    }
+
+    .title {
+        font-weight: bold;
+    }
+
+    .position,
+    .length {
+        color: #{"@astal_muted"};
+    }
+}

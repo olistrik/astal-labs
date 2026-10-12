@@ -9,7 +9,10 @@ let
   ags = import ./nix/ags.nix {
     inherit pkgs astal;
     src = sources.ags;
-    extraPackages = [ astal.io astal.astal4 ];
+    extraPackages =
+      (with astal; [ io astal4 battery bluetooth network wireplumber mpris ])
+      # TLS for cover art, and the tools the brightness service and network panel call
+      ++ (with pkgs; [ glib-networking brightnessctl networkmanager ]);
   };
 in
 

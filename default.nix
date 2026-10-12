@@ -13,6 +13,7 @@ let
   example = bundle {
     src = ./example;
     name = "astal-labs-example";
+    entry = "app.tsx";
   };
 in
 {
