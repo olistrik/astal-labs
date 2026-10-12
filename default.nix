@@ -1,10 +1,12 @@
 {
   system ? builtins.currentSystem,
+  # Everything it pins, override to follow your own: `sources = (import ./npins) // { ... }`.
+  sources ? import ./npins,
+  # Pass your own nixpkgs to follow it, the way a flake input would `follows`.
+  pkgs ? import ./nix/pkgs.nix { inherit sources system; },
 }:
 
 let
-  sources = import ./npins;
-  pkgs = import ./nix/pkgs.nix { inherit sources system; };
   astal = import ./nix/astal.nix { inherit pkgs; src = sources.astal; };
 
   # Only used to bundle, the bundle brings its own libraries.
