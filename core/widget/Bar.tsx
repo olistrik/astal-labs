@@ -1,6 +1,7 @@
 import app from "ags/gtk4/app"
 import { Astal, Gtk, Gdk } from "ags/gtk4"
 import { createPoll } from "ags/time"
+import NiriMinimap from "./NiriMinimap"
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
     const time = createPoll("", 1000, "date")
@@ -21,7 +22,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
             >
                 <label label="Welcome to AGS!" />
             </button>
-            <box $type="center" />
+            <NiriMinimap $type="center" monitor={gdkmonitor} />
             <button
                 $type="end"
                 onClicked={() => print("hello")}
