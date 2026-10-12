@@ -132,7 +132,7 @@ box.BarItem {
     }
 
     &.connected image {
-        color: $primary;
+        color: #{"@astal_blue"};
     }
 
     &.low image {
@@ -254,5 +254,29 @@ box.Menu {
     .position,
     .length {
         color: #{"@astal_muted"};
+    }
+}
+
+// Sliders (volume, seek bar): the filled part is primary, the rest is border.
+scale {
+    trough {
+        background-color: #{"@astal_border"};
+        border: 1px solid #{"@astal_border"};
+
+        highlight {
+            background-color: $primary;
+            border: 1px solid $primary;
+        }
+    }
+
+    // the stock knob is 20px across, this is half of it (8px plus the 1px border on each side).
+    // the margin is left alone: the stock theme makes it negative so the knob does not thicken the track
+    slider {
+        min-width: 8px;
+        min-height: 8px;
+        border-radius: 50%;
+        background-color: $primary;
+        background-image: none;
+        border: 1px solid $primary;
     }
 }

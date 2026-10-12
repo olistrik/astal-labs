@@ -50,7 +50,12 @@ const Bar = createBar((monitor) => ({
 
 start({
     instanceName: "astal-labs-example",
-    // a built-in theme by name, or your own: here tokyo-night with the pills as dark as the bar menus
-    theme: { ...themes["tokyo-night"], surface: themes["tokyo-night"].bg },
+    // a built-in theme by name, or your own: here tokyo-night with orange as the primary
+    // colour and the pills as dark as the bar menus
+    theme: {
+        ...themes["tokyo-night"],
+        primary: themes["tokyo-night"].orange,
+        surface: themes["tokyo-night"].bg,
+    },
     windows: [Bar],
 })

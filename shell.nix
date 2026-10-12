@@ -11,8 +11,8 @@ let
     src = sources.ags;
     extraPackages =
       (with astal; [ io astal4 battery bluetooth network wireplumber mpris ])
-      # TLS for cover art, and the tools the brightness service and network panel call
-      ++ (with pkgs; [ glib-networking brightnessctl networkmanager ]);
+      # TLS for cover art, and the tools the brightness service, network panel and audio panel call
+      ++ (with pkgs; [ glib-networking brightnessctl networkmanager pipewire ]);
   };
 in
 

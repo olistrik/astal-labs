@@ -40,6 +40,7 @@ pkgs.stdenv.mkDerivation {
       pkgs.lib.makeBinPath [
         pkgs.brightnessctl
         pkgs.networkmanager
+        pkgs.pipewire
       ]
     })
   '';
