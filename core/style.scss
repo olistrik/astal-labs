@@ -184,6 +184,20 @@ box.BarItem {
         }
     }
 
+    entry.PanelEntry {
+        margin: 2px 4px 4px;
+
+        &.error {
+            border-color: #{"@error_color"};
+        }
+    }
+
+    .PanelHint {
+        margin-right: 8px;
+        color: #{"@astal_muted"};
+        font-size: 0.85em;
+    }
+
     button.PanelRow.active {
         color: $primary;
     }
